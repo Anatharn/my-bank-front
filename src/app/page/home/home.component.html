@@ -1,0 +1,7 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let account of accounts">
+        <mat-card>
+            <mat-card-content><a [routerLink]="['/account']" [queryParams]="{url:account._links.self.href}">{{account.name}}</a></mat-card-content>
+        </mat-card>    
+    </mat-grid-tile>
+</mat-grid-list>

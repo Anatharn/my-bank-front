@@ -1,0 +1,38 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Add an account line
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="form-account">
+        <form>
+            <mat-form-field>
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="accountLine.date" name="date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        
+            <mat-form-field class="details">
+                <mat-label>Details</mat-label> 
+                <input matInput [(ngModel)]="accountLine.details" name="details">
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+                <mat-label>Amount</mat-label> 
+                <input matInput [(ngModel)]="accountLine.amount" name="amount" type="number">
+                <span matTextPrefix>€&nbsp;</span>
+            </mat-form-field>
+        </form>
+        <div>
+            <button mat-fab color="primary" (click)="add()" >
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="form-account">
+        <app-account-lines-upload></app-account-lines-upload>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,3 @@
+<h1>{{account.name}}</h1>
+<app-account-line-add [account]="account" (newAccountLineEvent)="addAccountLine($event)"></app-account-line-add>
+<app-account-lines-table [account]="account"></app-account-lines-table>

@@ -1,0 +1,34 @@
+<table mat-table [dataSource]="accountLines">
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let accountLine"> {{accountLine.date | date:'shortDate'}} </td>
+    </ng-container>
+    <!-- Details Column -->
+    <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef> Details </th>
+        <td mat-cell *matCellDef="let accountLine" class="details"> {{accountLine.details}} </td>
+    </ng-container>
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let accountLine" class="amount"> {{accountLine.amount | currency:'EUR'}} </td>
+    </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let accountLine" class="amount">
+            <button mat-icon-button color="warn" (click)="delete(accountLine)" >
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator  [length]="totalElements"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                aria-label="Select page"
+                (page)="page($event)">
+</mat-paginator>
