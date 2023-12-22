@@ -17,7 +17,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 })
 export class AccountLinesTableComponent implements OnChanges{
 
-  @Input() account: Account = new Account();
+  @Input() account?: Account;
   accountLines: AccountLine[] = [] 
   displayedColumns: string[] = ["date", "details", "amount", "action"]
   pageSize: number = 5
@@ -32,8 +32,8 @@ export class AccountLinesTableComponent implements OnChanges{
       this.loadData()
   }
   loadData() {
-    if(this.account.id){
-      this.accountLineService.findByAccountId(this.account.id, this.pageIndex, this.pageSize)
+    if(this.account){
+      this.accountLineService.findByAccount(this.account, this.pageIndex, this.pageSize)
       .subscribe(response => {
         console.log(response)
         this.accountLines = response._embedded['accountLines']
@@ -41,6 +41,7 @@ export class AccountLinesTableComponent implements OnChanges{
       })
       if(this.table){
         this.table.renderRows()
+      
       }
     }
   }

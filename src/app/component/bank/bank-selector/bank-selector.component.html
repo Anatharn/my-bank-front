@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Bank</mat-label>
+    <mat-select [(ngModel)]="selectedLink" (selectionChange)="selectionChange($event)">
+        <mat-option *ngFor="let bank of banks" [value]="bank._links.self.href">{{bank.name}}</mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,37 @@
+<mat-accordion multi>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Add an account
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="form-account">
+            <form>
+                <mat-form-field class="name">
+                    <mat-label>Name</mat-label> 
+                    <input matInput [(ngModel)]="account.name" name="name">
+                </mat-form-field>
+                <mat-form-field class="code">
+                    <mat-label>code</mat-label> 
+                    <input matInput [(ngModel)]="account.code" name="code">
+                </mat-form-field>
+                <app-bank-selector (onSelectBankEvent)="onSelectBankEvent($event)"></app-bank-selector>
+                <app-category-selector (onSelectCategoryEvent)="onSelectCategoryEvent($event)"></app-category-selector>
+            </form>
+            <div *ngIf="account._links; else elseBlock" >
+                <button mat-fab color="primary" (click)="edit()" >
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+            <ng-template #elseBlock>
+                <div>
+                    <button mat-fab color="primary" (click)="add()" >
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </ng-template>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

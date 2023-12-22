@@ -27,18 +27,19 @@ import { AccountLinesUploadComponent } from '../account-lines-upload/account-lin
 })
 export class AccountLineAddComponent {
 
-  @Input() account = new Account()
+  @Input() account?: Account
   accountLine: AccountLine = new AccountLine()
   @Output() newAccountLineEvent = new EventEmitter<AccountLine>
 
   constructor(private accountLineService: AccountLineService) {}
   
   add():void{
-    this.accountLine.account = this.account._links.self.href
-    this.accountLineService.add(this.accountLine).subscribe(accountLine => {
-      this.newAccountLineEvent.emit(accountLine)
-      this.accountLine = new AccountLine()
-    })
-    
+    if(this.account) {
+      this.accountLine.account = this.account._links.self.href
+      this.accountLineService.create(this.accountLine).subscribe(accountLine => {
+        this.newAccountLineEvent.emit(accountLine)
+        this.accountLine = new AccountLine()
+      })
+    }
   }
 }

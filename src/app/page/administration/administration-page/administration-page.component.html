@@ -1,0 +1,24 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-content>
+                <a [routerLink]="['/administration/account']"><h1>Account</h1></a>
+            </mat-card-content>
+        </mat-card>    
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-content>
+                <a [routerLink]="['/administration/bank']"><h1>Bank</h1></a>
+            </mat-card-content>
+        </mat-card>    
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-content>
+                <a [routerLink]="['/administration/category']"><h1>Category</h1></a>
+            </mat-card-content>
+        </mat-card>    
+    </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,9 @@
+.form-account {
+    display: flex;
+    justify-content: space-between;
+}
+.form-account form{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}

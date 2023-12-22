@@ -1,23 +1,29 @@
-<mat-form-field>
-    <div class="file-upload-div">
-      <mat-toolbar>
-        <input matInput [value]="fileName" />
 
-        <button
-          mat-flat-button
-          color="primary"
-          [disabled]="!currentFile"
-          (click)="upload()"
-        >
-          Upload
-        </button>
-      </mat-toolbar>
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Import File
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field class="file-upload-input">
+        <div>
+          <mat-toolbar>
+            <input matInput [value]="fileName" />
+            <button type="button" color="primary" mat-raised-button (click)="fileInput.click()">Choose File</button>
+            <button
+              mat-flat-button
+              color="primary"
+              [disabled]="!currentFile"
+              (click)="upload()"
+            >
+              Upload
+            </button>
+          </mat-toolbar>
+          
+          <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+        </div>
+    </mat-form-field>
+</mat-expansion-panel>
 
-      <input
-        type="file"
-        id="fileInput"
-        (change)="selectFile($event)"
-        name="fileInput"
-      />
-    </div>
-  </mat-form-field>

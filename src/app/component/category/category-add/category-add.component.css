@@ -1,0 +1,12 @@
+.form-category {
+    display: flex;
+    justify-content: space-between;
+}
+.form-category form{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
+.form-category .name {
+    width: 500px;
+}

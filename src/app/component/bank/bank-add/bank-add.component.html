@@ -1,0 +1,22 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Add a bank
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="form-bank">
+        <form>
+            <mat-form-field class="name">
+                <mat-label>Name</mat-label> 
+                <input matInput [(ngModel)]="bank.name" name="name">
+            </mat-form-field>
+        </form>
+        <div>
+            <button mat-fab color="primary" (click)="add()" >
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-expansion-panel>

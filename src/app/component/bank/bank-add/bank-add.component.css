@@ -1,0 +1,12 @@
+.form-bank {
+    display: flex;
+    justify-content: space-between;
+}
+.form-bank form{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
+.form-bank .name {
+    width: 500px;
+}

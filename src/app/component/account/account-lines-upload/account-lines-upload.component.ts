@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FileUploadService } from 'src/app/service/file-upload.service';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { Account } from 'src/app/domain/account/account';
 
 @Component({
   selector: 'app-account-lines-upload',
@@ -14,6 +16,7 @@ import { FileUploadService } from 'src/app/service/file-upload.service';
   standalone: true,
   imports: [
     MatButtonModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
@@ -23,15 +26,21 @@ import { FileUploadService } from 'src/app/service/file-upload.service';
 })
 export class AccountLinesUploadComponent {
 
+  @Input() account?: Account;
+  @Output() importAccountLineEvent: EventEmitter<string> = new EventEmitter()
   fileName: string = "";
   currentFile?: File;
+ 
 
   constructor(private fileUploadService: FileUploadService) {}
 
   upload(){
-    if (this.currentFile) {
-      this.fileUploadService.upload(this.currentFile).subscribe(
-          response => this.currentFile = undefined);
+    if (this.currentFile && this.account) {
+      this.fileUploadService.upload(this.currentFile, this.account._links.self.href).subscribe(
+          response => {
+            this.currentFile = undefined
+            this.importAccountLineEvent.emit("ok");
+          });
     }
   }
   selectFile(event: any){

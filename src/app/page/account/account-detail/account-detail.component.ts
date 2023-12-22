@@ -6,18 +6,20 @@ import { ActivatedRoute, Route, Router, RouterState } from '@angular/router';
 import { Account } from 'src/app/domain/account/account';
 import { AccountService } from 'src/app/service/account.service';
 import { AccountLinesTableComponent } from 'src/app/component/account/account-lines-table/account-lines-table.component';
+import { AccountLinesUploadComponent } from 'src/app/component/account/account-lines-upload/account-lines-upload.component';
+import { AccountSumComponent } from 'src/app/component/account/account-sum/account-sum.component';
 
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
   styleUrls: ['./account-detail.component.css'],
   standalone: true,
-  imports: [AccountLineAddComponent, AccountLinesTableComponent, MatIconModule]
+  imports: [AccountLineAddComponent, AccountLinesUploadComponent, AccountLinesTableComponent, AccountSumComponent, MatIconModule]
 })
 export class AccountDetailComponent implements OnInit{
 
   url!: string;
-  account: Account = new Account();
+  account?: Account;
 
   constructor(private accountService: AccountService, private activatedRoute: ActivatedRoute){}
 
@@ -31,8 +33,10 @@ export class AccountDetailComponent implements OnInit{
   }
 
   addAccountLine(accountLine: AccountLine){
-    accountLine.account = this.account._links.self.href
-    this.loadData();
+    if(this.account){
+      accountLine.account = this.account._links.self.href
+      this.loadData();
+    }
   }
   loadData(){
     this.accountService.findByUrl(this.url).subscribe(account => {

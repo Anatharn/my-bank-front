@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="selectedLink" (selectionChange)="selectionChange($event)">
+        <mat-option *ngFor="let category of categories" [value]="category._links.self.href">{{category.name}}</mat-option>
+    </mat-select>
+</mat-form-field>

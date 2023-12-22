@@ -1,26 +1,24 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Utils } from './utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = '/api/operation/upload-file';
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
+  upload(file: File, accountUrl: string): Observable<Object> {
+    const formData: FormData = new FormData()
 
-    formData.append('file', file);
+    formData.append('file', file)
+    //formData.append('accountId', accountId.toString())
+    formData.append('url', Utils.convertUrl(accountUrl))
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-
-    return this.http.request(req);
+    return this.http.post(this.baseUrl, formData)
   }
 }

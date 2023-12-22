@@ -1,3 +1,7 @@
-<h1>{{account.name}}</h1>
+<div class="header">
+    <h1>{{account?.name}}</h1>
+    <app-account-sum [account]="account"></app-account-sum>
+</div>
 <app-account-line-add [account]="account" (newAccountLineEvent)="addAccountLine($event)"></app-account-line-add>
+<app-account-lines-upload [account]="account" (importAccountLineEvent)="loadData()"></app-account-lines-upload>
 <app-account-lines-table [account]="account"></app-account-lines-table>

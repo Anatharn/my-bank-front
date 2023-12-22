@@ -10,3 +10,8 @@ tr {
 .amount{
     text-align: right;
 }
+.header {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}

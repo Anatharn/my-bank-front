@@ -1,14 +1,24 @@
 import { Links } from "../hal/links";
-import { AccountLine } from "./account-line";
 
 export class Account {
 
-    id!: number
-    name:string;
-    accountLines: Array<AccountLine>[] = []
+    name:string
+    code:string
+    bank?:string
+    category?:string
     _links!: Links
 
-    constructor(name: string = ""){
-        this.name = name;
+    constructor(name: string = "", code: string = ""){
+        this.name = name
+        this.code = code
+    }
+}
+export class SumAccount {
+
+    sum: number
+    _links!: Links
+
+    constructor(sum: number = 0) {
+        this.sum = sum
     }
 }
